@@ -3,18 +3,12 @@ package com.which.steps;
 import com.which.Web.pages.Television_page;
 import com.which.helpers.Log;
 import com.which.helpers.WebCommonAction;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.apache.velocity.runtime.directive.Break;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
 
 /**
  * Created by roscian.frank on 05/04/2017.
@@ -39,27 +33,27 @@ public class Television_step extends WebCommonAction {
         String xpathStr;
         switch (screenSize) {
             case "17-22":
-                xpathStr=Television_page.screenSizeXpath.replace("#","54");
+                xpathStr=Television_page.screenXpath.replace("#","54");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
             case "24-32":
-                xpathStr=Television_page.screenSizeXpath.replace("#","61");
+                xpathStr=Television_page.screenXpath.replace("#","61");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
             case "39-46":
-                xpathStr=Television_page.screenSizeXpath.replace("#","68");
+                xpathStr=Television_page.screenXpath.replace("#","68");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
             case "47-50":
-                xpathStr=Television_page.screenSizeXpath.replace("#","75");
+                xpathStr=Television_page.screenXpath.replace("#","75");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
             case "51-55":
-                xpathStr=Television_page.screenSizeXpath.replace("#","82");
+                xpathStr=Television_page.screenXpath.replace("#","82");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
             case "60-65":
-                xpathStr=Television_page.screenSizeXpath.replace("#","89");
+                xpathStr=Television_page.screenXpath.replace("#","89");
                 driver.findElement(By.xpath(xpathStr)).click();
                 break;
 
@@ -109,6 +103,35 @@ public class Television_step extends WebCommonAction {
 
             default:
                 Assert.assertTrue("television size not found",false);
+                break;
+        }
+    }
+
+    @When("^I select screen type \"([^\"]*)\"$")
+    public void iSelectScreenType(String screenType) throws Throwable {
+        PageFactory.initElements(driver,Television_page.class);
+        String xpathStr;
+        switch (screenType) {
+            case "OLED":
+                xpathStr = Television_page.screenXpath.replace("#", "54");
+                driver.findElement(By.xpath(xpathStr)).click();
+                break;
+            case "Plasma":
+                xpathStr = Television_page.screenXpath.replace("#", "61");
+                driver.findElement(By.xpath(xpathStr)).click();
+                break;
+            case "LED":
+                xpathStr = Television_page.screenXpath.replace("#", "68");
+                driver.findElement(By.xpath(xpathStr)).click();
+                break;
+            case "Curved":
+                xpathStr = Television_page.screenXpath.replace("#", "75");
+                driver.findElement(By.xpath(xpathStr)).click();
+                break;
+
+
+            default:
+                Assert.assertTrue("television type not found", false);
                 break;
         }
     }

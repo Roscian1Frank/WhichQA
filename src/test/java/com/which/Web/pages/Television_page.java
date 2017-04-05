@@ -30,7 +30,7 @@ public class Television_page extends HelperBase {
     @FindBy(xpath = "//*[@data-reactid='"+"#"+"']")
     public static WebElement screenSize;
 
-    public static String screenSizeXpath = "//*[@data-reactid='"+"#"+"']";
+    public static String screenXpath = "//*[@data-reactid='"+"#"+"']";
 
     public static String modelNO="//*[@class='_2NkKN'][contains(.,'"+"#"+"')]";
 }
