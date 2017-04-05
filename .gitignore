@@ -4,3 +4,7 @@
 cucumber.json
 
 *.log
+
+*.log
+
+logfile.log

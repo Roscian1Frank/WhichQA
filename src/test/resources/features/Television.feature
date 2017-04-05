@@ -40,8 +40,13 @@ Feature: To check television page is working as expected
       | Screen size (high to low) |
       | Most-recently launched    |
 
-    @AddToCompare
-    Scenario: check the comparision of television
-      Given I am on television page
-      When I add product to compare
-      Then I check the comparision
+  @AddToCompare
+  Scenario: check the comparision of television
+    Given I am on television page
+    When I add product to compare
+    Then I check the comparision
+
+  @Television_page_tabs
+  Scenario: check the comparision of television
+    Given I am on television page
+    Then I check All tabs are displayed

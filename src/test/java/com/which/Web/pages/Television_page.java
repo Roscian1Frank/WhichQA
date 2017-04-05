@@ -44,5 +44,8 @@ public class Television_page extends HelperBase {
     public static List<WebElement> compareArray;
 
     @FindBy(linkText = "Compare")
-    public static WebElement comparebutton;
+    public static WebElement compare_button;
+
+    @FindBy(css = "._1lOYS")
+    public static List<WebElement> televisionTabs;
 }
