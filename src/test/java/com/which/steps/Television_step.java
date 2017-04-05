@@ -1,9 +1,9 @@
 package com.which.steps;
 
 import com.which.Web.pages.Television_page;
+import com.which.helpers.Constants;
 import com.which.helpers.Log;
 import com.which.helpers.WebCommonAction;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -13,6 +13,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by roscian.frank on 05/04/2017.
@@ -210,16 +215,16 @@ public class Television_step extends WebCommonAction {
         PageFactory.initElements(driver, Television_page.class);
         String WebStr = "(//*[@class='_3sLz3 action-add'])[";
 
-        if(Television_page.addToCompare.size()>0){
-            for(int i=1;i<5;i++){
+        if (Television_page.addToCompare.size() > 0) {
+            for (int i = 1; i < 5; i++) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                        driver.findElement(By.xpath((WebStr+i+"]"))));
-             driver.findElement(By.xpath((WebStr+i+"]"))).click();
-             Thread.sleep(500);
+                        driver.findElement(By.xpath((WebStr + i + "]"))));
+                driver.findElement(By.xpath((WebStr + i + "]"))).click();
+                Thread.sleep(500);
             }
 
-        }else{
-            Assert.assertTrue("Not able to add product to comparision",false);
+        } else {
+            Assert.assertTrue("Not able to add product to comparision", false);
         }
         Log.info("Products are added to compare");
     }
@@ -228,8 +233,23 @@ public class Television_step extends WebCommonAction {
     public void iCheckTheComparision() throws Throwable {
         PageFactory.initElements(driver, Television_page.class);
         int arraySize = Television_page.compareArray.size();
-        Assert.assertEquals(4,arraySize);
-        Assert.assertTrue(isElementDisplay(Television_page.comparebutton));
+        Assert.assertEquals(4, arraySize);
+        Assert.assertTrue(isElementDisplay(Television_page.compare_button));
         Log.info("Product compare model displayed");
+    }
+
+    @Then("^I check All tabs are displayed$")
+    public void iCheckAllTabsAreDisplayed() throws Throwable {
+        PageFactory.initElements(driver, Television_page.class);
+        ArrayList<String> webArray = new ArrayList<String>();
+        for (WebElement links : Television_page.televisionTabs) {
+            webArray.add(links.getText());
+        }
+        String[] webArr = new String[webArray.size()];
+        webArr = webArray.toArray(webArr);
+        Assert.assertTrue("List menu are changed please check", Arrays.deepEquals(Constants.TELEVISIONTABS, webArr));
+        Assert.assertTrue("List menu are changed please check", Constants.TELEVISIONTABS.length == webArr.length);
+        Log.info("Menu are checked");
+
     }
 }
