@@ -1,3 +1,4 @@
+@regression
 Feature: To check television page is working as expected
 
   @search_television_by_size
@@ -19,9 +20,28 @@ Feature: To check television page is working as expected
   Scenario Outline: check the search functionality by type
     Given I am on television page
     When I select screen type "<Screen type>"
+    Then I check the correct "<Screen type>" result are displayed
     Examples:
       | Screen type |
       | OLED        |
       | Plasma      |
       | LED         |
       | Curved      |
+
+  @sort_by
+  Scenario Outline: check the search functionality by sort
+    Given I am on television page
+    When I search television by "<Sort by>"
+    Then I check the correct "<Sort by>" result
+    Examples:
+      | Sort by                   |
+      | Price (low to high)       |
+      | Price (high to low)       |
+      | Screen size (high to low) |
+      | Most-recently launched    |
+
+    @AddToCompare
+    Scenario: check the comparision of television
+      Given I am on television page
+      When I add product to compare
+      Then I check the comparision

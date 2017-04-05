@@ -96,7 +96,10 @@ public class WebTestBase extends WebCommonAction{
 		DesiredCapabilities dc = new DesiredCapabilities();
 		System.setProperty("webdriver.chrome.driver", chromeDriverMacPath);
 		driver = new ChromeDriver(dc);
-		driver.manage().window().maximize();
+		Point targetPosition = new Point(0, 0);
+		driver.manage().window().setPosition(targetPosition);
+		Dimension targetSize = new Dimension(1920, 1080);
+		driver.manage().window().setSize(targetSize);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		Log.info("********************** -- TEST START -- **************************");
 		System.out.println("reaching hooks / local");
