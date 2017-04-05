@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.security.cert.X509Certificate;
+import java.util.List;
 
 /**
  * Created by roscian.frank on 05/04/2017.
@@ -27,10 +28,21 @@ public class Television_page extends HelperBase {
     @FindBy(xpath = "//*[@class='_1lOYS _2vMJc'][contains(.,\"All Televisions\")]")
     public static WebElement allTelevisionTab;
 
-    @FindBy(xpath = "//*[@data-reactid='"+"#"+"']")
-    public static WebElement screenSize;
-
     public static String screenXpath = "//*[@data-reactid='"+"#"+"']";
 
     public static String modelNO="//*[@class='_2NkKN'][contains(.,'"+"#"+"')]";
+
+    @FindBy (xpath = "(//*[@class='_1D9wd ztPan'])[3]")
+    public static WebElement product_listing_sorter;
+
+    public static String productPrice = "//*[@data-test-element='product-amount'][contains(.,'"+"#"+"')]";
+
+    @FindBy(xpath = "//*[@class='_3sLz3 action-add']")
+    public static List<WebElement> addToCompare;
+
+    @FindBy(xpath = "//*[@class='cont-products-compare active']/ul/li")
+    public static List<WebElement> compareArray;
+
+    @FindBy(linkText = "Compare")
+    public static WebElement comparebutton;
 }
