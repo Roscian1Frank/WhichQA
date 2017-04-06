@@ -1,7 +1,6 @@
 package com.which.Web.pages;
 
 import com.which.helpers.HelperBase;
-import org.apache.xmlbeans.impl.xb.xsdschema.FieldDocument;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +15,6 @@ public class Television_page extends HelperBase {
     public Television_page(WebDriver driver) {
         super(driver);
     }
-    String screnSize;
 
     //Navigation tab
     @FindBy(xpath = "//*[@class='gn-top-level-menu__link-title'][contains(.,\"Technology\")]")

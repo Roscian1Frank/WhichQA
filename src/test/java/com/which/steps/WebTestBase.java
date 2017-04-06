@@ -26,21 +26,13 @@ public class WebTestBase extends WebCommonAction{
 			+ "/src/test/resources/chromeDriver/mac/chromedriver";
 	private static String geckoDriver = System.getProperty("user.dir")
 			+ "/src/test/resources/chromeDriver/mac/geckodriver";
-
-
-	public static final String USERNAME = "roscianfrank1";
-	public static final String AUTOMATE_KEY = "NsgsGgWfk5HDvA4gzQyV";
-	public static final String url = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
-
 	public static boolean scenarioResult; public static String sessionId;
 
 
 	@Before
 
 	public void startApp() throws IOException, ParseException{
-		//BrowserStackTesting();
 		LocalTesting();
-
 	}
 
 	@After
@@ -66,32 +58,6 @@ public class WebTestBase extends WebCommonAction{
 		driver.quit();
 	}
 
-
-	public void BrowserStackTesting()throws IOException, ParseException {
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("browserName", "firefox");
-		capabilities.setCapability("resolution", "1920x1080");
-		capabilities.setCapability("version", "46.0");
-		capabilities.setCapability("os", "OS X");
-		capabilities.setCapability("os_version", "El Capitan");
-		capabilities.setCapability("browserstack.debug", "true");
-		capabilities.setCapability("build", "QA-Web "+getCurrentDateDMY());
- 		capabilities.setCapability("name", "Parallel Run");
-
-		capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
-		try {
-			driver = new RemoteWebDriver(new URL(url), capabilities);
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
-		} catch (Exception e) {
-
-		}
-		driver.manage().window().maximize();
-		Log.info("********************** -- TEST START -- **************************");
-		System.out.println("reaching hooks / browserstack");
-	}
 	public void LocalTesting(){
 		DesiredCapabilities dc = new DesiredCapabilities();
 		System.setProperty("webdriver.chrome.driver", chromeDriverMacPath);
